@@ -93,3 +93,44 @@ ptnCont.addEventListener('mouseenter', () => {
 ptnCont.addEventListener('mouseleave', () => {
     ptnCont.style.animationPlayState = 'running';
 });
+
+
+
+document.addEventListener("DOMContentLoaded", function() {
+    const sliderContainers = document.querySelectorAll('.cbs-cont');
+
+    sliderContainers.forEach(container => {
+        const slider = container.querySelector('.cobox-slider');
+        const leftArrow = container.querySelector('.left-arrow');
+        const rightArrow = container.querySelector('.right-arrow');
+
+        function updateArrows() {
+            if (slider.scrollLeft === 0) {
+                leftArrow.style.display = 'none';
+            } else {
+                leftArrow.style.display = 'block';
+            }
+
+            if (slider.scrollWidth - slider.scrollLeft === slider.clientWidth) {
+                rightArrow.style.display = 'none';
+            } else {
+                rightArrow.style.display = 'block';
+            }
+        }
+
+        leftArrow.addEventListener('click', () => {
+            slider.scrollBy({ left: -360, behavior: 'smooth' });
+        });
+
+        rightArrow.addEventListener('click', () => {
+            slider.scrollBy({ left: 360, behavior: 'smooth' });
+        });
+
+        slider.addEventListener('scroll', updateArrows);
+
+        // Initialize arrow visibility
+        updateArrows();
+    });
+});
+
+

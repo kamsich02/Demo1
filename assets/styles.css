@@ -76,10 +76,9 @@
     background-color: #5a5a5a;
 }
 
-select:focus, select:active, input:focus, input:active {}
+
 
 * {
-    cursor: pointer;
     text-decoration: none;
     margin: 0;
     padding: 0;
@@ -621,7 +620,33 @@ img {
     align-items: center;
 }
 
+.cbs-cont {
+    position: relative;
+    width: 100%;
+}
 
+.arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--white);
+    font-size: 10px;
+    width: 10px;
+    background: var(--brandcolor-sub-base);
+    padding: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    z-index: 10;
+    display: none; /* Initially hide the arrows */
+}
+
+.left-arrow {
+    left: -20px;
+}
+
+.right-arrow {
+    right: -20px;
+}
 
 .cobox-slider {
     display: flex;
@@ -1137,6 +1162,12 @@ img {
     }
     .lbcs {
         font-size: 32px;
+    }
+    .fsbr, .fsbl {
+        font-size: 15px;
+    }
+    .fsbr a {
+        margin-right: 10px;
     }
 }
 
