@@ -198,6 +198,10 @@ img {
     max-width: fit-content;
 }
 
+span.tnb {
+    margin-right: 10px;
+}
+
 .cbxbtn, .lcin-btn {
     padding: 16px 24px;
     font-family: var(--font-family-clash_display);
@@ -625,27 +629,30 @@ img {
     width: 100%;
 }
 
-.arrow {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    color: var(--white);
-    font-size: 10px;
-    width: 10px;
-    background: var(--brandcolor-sub-base);
+.dots {
+    display: flex;
+    text-align: center;
+    margin-top: 10px;
+    justify-content: center;
+    background-color: var(--brandcolor-sub-base);
+    width: fit-content;
+    margin: 0 auto;
     padding: 10px;
-    border-radius: 10px;
+    border-radius: 20px;
+}
+
+.dot {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    margin: 0 5px;
+    background-color: var(--slight-white-05);
+    border-radius: 50%;
     cursor: pointer;
-    z-index: 10;
-    display: none; /* Initially hide the arrows */
 }
 
-.left-arrow {
-    left: -20px;
-}
-
-.right-arrow {
-    right: -20px;
+.dot.active {
+    background-color: var(--white);
 }
 
 .cobox-slider {
@@ -659,10 +666,6 @@ img {
     /* Hide scrollbar in IE/Edge */
 }
 
-.cobox-slider::-webkit-scrollbar {
-    display: none;
-    /* Hide scrollbar in Chrome/Safari/Opera */
-}
 
 .cobox {
     background: linear-gradient(334deg, #ffffff0d, #ffffff00), var(--brandcolor-base);
@@ -1130,6 +1133,10 @@ img {
     .hero-home, .fsabove{
         flex-direction: column;
         gap:20px;
+    }
+
+    .tnb {
+        display: none;
     }
 
     .lc-box {

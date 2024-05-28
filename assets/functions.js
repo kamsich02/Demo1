@@ -101,36 +101,32 @@ document.addEventListener("DOMContentLoaded", function() {
 
     sliderContainers.forEach(container => {
         const slider = container.querySelector('.cobox-slider');
-        const leftArrow = container.querySelector('.left-arrow');
-        const rightArrow = container.querySelector('.right-arrow');
-
-        function updateArrows() {
-            if (slider.scrollLeft === 0) {
-                leftArrow.style.display = 'none';
-            } else {
-                leftArrow.style.display = 'block';
-            }
-
-            if (slider.scrollWidth - slider.scrollLeft === slider.clientWidth) {
-                rightArrow.style.display = 'none';
-            } else {
-                rightArrow.style.display = 'block';
-            }
+        const dots = container.querySelectorAll('.dot');
+        
+        function updateDots() {
+            const totalScrollWidth = slider.scrollWidth - slider.clientWidth;
+            const currentScrollPosition = slider.scrollLeft;
+            const activeIndex = Math.round((currentScrollPosition / totalScrollWidth) * (dots.length - 1));
+            
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === activeIndex);
+            });
         }
 
-        leftArrow.addEventListener('click', () => {
-            slider.scrollBy({ left: -360, behavior: 'smooth' });
+        slider.addEventListener('scroll', updateDots);
+
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                const totalScrollWidth = slider.scrollWidth - slider.clientWidth;
+                const targetScrollPosition = (totalScrollWidth / (dots.length - 1)) * index;
+                slider.scrollTo({ left: targetScrollPosition, behavior: 'smooth' });
+            });
         });
 
-        rightArrow.addEventListener('click', () => {
-            slider.scrollBy({ left: 360, behavior: 'smooth' });
-        });
-
-        slider.addEventListener('scroll', updateArrows);
-
-        // Initialize arrow visibility
-        updateArrows();
+        // Initialize dots
+        updateDots();
     });
 });
+
 
 
